@@ -200,7 +200,7 @@ require_once 'partials/header.php';
             <input type="date" name="date" value="<?= e($filter_date) ?>" style="max-width:160px;">
             <?php endif; ?>
             <select name="staff" style="max-width:180px;">
-                <option value="">Minden borbély</option>
+                <option value="">Minden műkörmös</option>
                 <?php foreach ($all_staff as $s): ?>
                 <option value="<?= $s['id'] ?>" <?= $filter_staff == $s['id'] ? 'selected' : '' ?>>
                     <?= e($s['name']) ?>
@@ -294,7 +294,7 @@ require_once 'partials/header.php';
                 <th>Ref.</th>
                 <th>Dátum / Idő</th>
                 <th>Ügyfél</th>
-                <th>Borbély</th>
+                <th>Műkörmös</th>
                 <th>Szolgáltatás</th>
                 <th>Telefon</th>
                 <th>Státusz</th>
@@ -380,9 +380,9 @@ require_once 'partials/header.php';
             <div class="modal-body">
                 <div class="form-row">
                     <div class="form-group">
-                        <label><i class="fas fa-user-tie"></i> Borbély *</label>
+                        <label><i class="fas fa-user-tie"></i> Műkörmös *</label>
                         <select name="staff_id" id="bStaff" required onchange="loadServiceSlots()">
-                            <option value="">Válassz borbélyt</option>
+                            <option value="">Válassz műkörmöst</option>
                             <?php foreach ($all_staff as $s): ?>
                             <option value="<?= $s['id'] ?>"><?= e($s['name']) ?></option>
                             <?php endforeach; ?>
@@ -410,7 +410,7 @@ require_once 'partials/header.php';
                     <div class="form-group">
                         <label><i class="fas fa-clock"></i> Kezdési idő *</label>
                         <select name="start_time" id="bTime" required>
-                            <option value="">Először válassz borbélyt, napot és szolgáltatást</option>
+                            <option value="">Először válassz műkörmöst, napot és szolgáltatást</option>
                         </select>
                     </div>
                 </div>
@@ -527,7 +527,7 @@ function showBookingDetail(b) {
         <div class="detail-row"><span class="detail-label">Ügyfél</span><span class="detail-value">${b.customer_name}</span></div>
         <div class="detail-row"><span class="detail-label">Email</span><span class="detail-value">${b.customer_email}</span></div>
         <div class="detail-row"><span class="detail-label">Telefon</span><span class="detail-value">${b.customer_phone || '–'}</span></div>
-        <div class="detail-row"><span class="detail-label">Borbély</span><span class="detail-value">${b.staff_name}</span></div>
+        <div class="detail-row"><span class="detail-label">Műkörmös</span><span class="detail-value">${b.staff_name}</span></div>
         <div class="detail-row"><span class="detail-label">Szolgáltatás</span><span class="detail-value">${b.service_name}</span></div>
         <div class="detail-row"><span class="detail-label">Dátum</span><span class="detail-value">${b.booking_date}</span></div>
         <div class="detail-row"><span class="detail-label">Időpont</span><span class="detail-value">${b.start_time.slice(0,5)} – ${b.end_time.slice(0,5)}</span></div>
@@ -575,7 +575,7 @@ function loadServiceSlots() {
 
 function booking_status_email(array $booking, string $new_status): void
 {
-    $site_name  = get_setting('site_name',   'Barber Shop');
+    $site_name  = get_setting('site_name',   'Műkörmös Szalon');
     $site_email = get_setting('site_email',  '');
     $site_phone = get_setting('site_phone',  '');
     $site_addr  = get_setting('site_address','');
@@ -671,7 +671,7 @@ function booking_status_email(array $booking, string $new_status): void
     </div>
     <div class='details'>
       <div class='dr'><span class='dl'>Szolgáltatás</span><span class='dv'>{$booking['service_name']}</span></div>
-      <div class='dr'><span class='dl'>Borbély</span><span class='dv'>{$booking['staff_name']}</span></div>
+      <div class='dr'><span class='dl'>Műkörmös</span><span class='dv'>{$booking['staff_name']}</span></div>
       <div class='dr'><span class='dl'>Dátum</span><span class='dv'>{$date_hu}</span></div>
       <div class='dr'><span class='dl'>Időpont</span><span class='dv'>" . substr($booking['start_time'],0,5) . " – " . substr($booking['end_time'],0,5) . "</span></div>
       <div class='dr'><span class='dl'>Időtartam</span><span class='dv'>{$booking['service_duration']} perc</span></div>

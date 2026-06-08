@@ -4,7 +4,7 @@ require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../includes/schema.php';
 
 // Beállítások
-$site_name    = get_setting('site_name', 'Barber Shop');
+$site_name    = get_setting('site_name', 'Műkörmös Szalon');
 $site_phone   = get_setting('site_phone', '');
 $site_email   = get_setting('site_email', '');
 $site_address = get_setting('site_address', '');
@@ -26,7 +26,6 @@ if ($menu_row) {
 // Aktuális URL
 $current_url = BASE_URL . '/' . trim($_SERVER['REQUEST_URI'], '/');
 $current_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-$current_path = preg_replace('#^barber/?#', '', $current_path);
 
 $page_meta_title = $page_meta_title ?? $site_name;
 $page_meta_desc  = $page_meta_desc  ?? $meta_desc;
@@ -89,7 +88,7 @@ $page_schema     = $page_schema     ?? '';
                 <?php if ($site_logo): ?>
                     <img src="<?= UPLOAD_URL . e($site_logo) ?>" alt="<?= e($site_name) ?>">
                 <?php else: ?>
-                    <span class="logo-icon"><i class="fas fa-cut"></i></span>
+                    <span class="logo-icon"><i class="fas fa-hand-sparkles"></i></span>
                     <span class="logo-text"><?= e($site_name) ?></span>
                 <?php endif; ?>
             </a>
@@ -100,7 +99,6 @@ $page_schema     = $page_schema     ?? '';
                     <?php foreach ($header_menu as $item): ?>
                     <?php
                     $item_path = trim(parse_url($item['url'], PHP_URL_PATH), '/');
-                    $item_path = preg_replace('#^barber/?#', '', $item_path);
                     $is_active = ($current_path === $item_path) ||
                                  ($item_path === '' && $current_path === '');
                     $is_booking = str_contains($item['url'], 'foglalas');

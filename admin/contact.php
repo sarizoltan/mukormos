@@ -95,7 +95,7 @@ require_once 'partials/header.php';
                         <label><i class="fas fa-envelope" style="color:var(--accent);"></i> Email cím</label>
                         <input type="email" name="site_email"
                                value="<?= e(cs('site_email')) ?>"
-                               placeholder="pl. info@barbershop.hu">
+                               placeholder="pl. hello@nailsalon.hu">
                     </div>
                 </div>
             </div>
@@ -206,8 +206,8 @@ require_once 'partials/header.php';
                 <?php else: ?>
                 <div class="empty-state">
                     <i class="fas fa-clock"></i>
-                    <p>Nincs nyitvatartási adat. Előbb hozz létre legalább egy borbélyt!</p>
-                    <a href="staff.php" class="btn btn-secondary">Borbélyok kezelése</a>
+                    <p>Nincs nyitvatartási adat. Előbb hozz létre legalább egy műkörmöst!</p>
+                    <a href="staff.php" class="btn btn-secondary">Műkörmösök kezelése</a>
                 </div>
                 <?php endif; ?>
             </div>
@@ -354,8 +354,8 @@ require_once 'partials/header.php';
                 <div class="form-group">
                     <label>Marker felirat</label>
                     <input type="text" name="osm_marker_label"
-                           value="<?= e(cs('osm_marker_label', cs('site_name','Barber Shop'))) ?>"
-                           placeholder="pl. Barber Shop">
+                           value="<?= e(cs('osm_marker_label', cs('site_name','Műkörmös Szalon'))) ?>"
+                           placeholder="pl. Műkörmös Szalon">
                 </div>
                 <button type="button" class="btn btn-secondary" onclick="previewOSM()">
                     <i class="fas fa-eye"></i> Előnézet frissítése
@@ -443,13 +443,13 @@ require_once 'partials/header.php';
                         <label><i class="fab fa-facebook" style="color:#1877f2;"></i> Facebook</label>
                         <input type="url" name="social_facebook"
                                value="<?= e(cs('social_facebook')) ?>"
-                               placeholder="https://facebook.com/barbershop">
+                               placeholder="https://facebook.com/nailsalon">
                     </div>
                     <div class="form-group">
                         <label><i class="fab fa-instagram" style="color:#e4405f;"></i> Instagram</label>
                         <input type="url" name="social_instagram"
                                value="<?= e(cs('social_instagram')) ?>"
-                               placeholder="https://instagram.com/barbershop">
+                               placeholder="https://instagram.com/nailsalon">
                     </div>
                 </div>
                 <div class="form-row">
@@ -457,13 +457,13 @@ require_once 'partials/header.php';
                         <label><i class="fab fa-tiktok"></i> TikTok</label>
                         <input type="url" name="social_tiktok"
                                value="<?= e(cs('social_tiktok')) ?>"
-                               placeholder="https://tiktok.com/@barbershop">
+                               placeholder="https://tiktok.com/@nailsalon">
                     </div>
                     <div class="form-group">
                         <label><i class="fab fa-youtube" style="color:#ff0000;"></i> YouTube</label>
                         <input type="url" name="social_youtube"
                                value="<?= e(cs('social_youtube')) ?>"
-                               placeholder="https://youtube.com/@barbershop">
+                               placeholder="https://youtube.com/@nailsalon">
                     </div>
                 </div>
                 <div class="form-row">
@@ -471,7 +471,7 @@ require_once 'partials/header.php';
                         <label><i class="fab fa-x-twitter"></i> X (Twitter)</label>
                         <input type="url" name="social_twitter"
                                value="<?= e(cs('social_twitter')) ?>"
-                               placeholder="https://x.com/barbershop">
+                               placeholder="https://x.com/nailsalon">
                     </div>
                     <div class="form-group">
                         <label><i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp</label>

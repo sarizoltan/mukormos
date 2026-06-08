@@ -1,6 +1,6 @@
 /* ============================================
-   BARBER SHOP – Frontend CSS
-   Stílus: Sötét elegáns, arany akcentszín
+   MŰKÖRMÖS SZALON – Frontend CSS
+   Stílus: Sötét elegáns, púderes akcentusszín
    ============================================ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -10,18 +10,18 @@
     --dark-2:      #1a1a1a;
     --dark-3:      #242424;
     --dark-4:      #2e2e2e;
-    --gold:        #c8a96e;
-    --gold-light:  #e0c898;
-    --gold-dark:   #a07840;
+    --gold:        #D4869C;
+    --gold-light:  #E8BFAC;
+    --gold-dark:   #C4A994;
     --white:       #ffffff;
-    --off-white:   #f5f0e8;
-    --text:        #e0d5c5;
-    --text-muted:  #8a7d6a;
-    --border:      rgba(200,169,110,.2);
+    --off-white:   #f7eef1;
+    --text:        #e9dce0;
+    --text-muted:  #a5929a;
+    --border:      rgba(212,134,156,.24);
     --radius:      8px;
     --radius-lg:   16px;
-    --shadow:      0 4px 24px rgba(0,0,0,.4);
-    --shadow-lg:   0 8px 48px rgba(0,0,0,.6);
+    --shadow:      0 8px 30px rgba(0,0,0,.35);
+    --shadow-lg:   0 16px 56px rgba(0,0,0,.5);
     --transition:  .3s ease;
     --font-serif:  'Playfair Display', Georgia, serif;
     --font-sans:   'Inter', system-ui, sans-serif;
@@ -102,10 +102,7 @@ a:hover { color: var(--gold-light); }
 
 /* ── HERO ── */
 .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; background: var(--dark); }
-.hero-bg {
-    background: url('/assets/images/hero-bg.jpg') center/cover no-repeat;
-} center/cover no-repeat;
-} center/cover no-repeat; opacity: .25; }
+.hero-bg { position:absolute; inset:0; background:url('/assets/images/hero-bg.jpg') center/cover no-repeat; opacity:.28; }
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15,15,15,.95) 0%, rgba(15,15,15,.6) 60%, rgba(15,15,15,.8) 100%); }
 .hero-content { position: relative; z-index: 2; max-width: 680px; }
 .hero-label { display: inline-flex; align-items: center; gap: 10px; color: var(--gold); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 24px; }
@@ -128,7 +125,7 @@ a:hover { color: var(--gold-light); }
 .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
 .service-card { background: var(--dark-3); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 36px 28px; transition: all var(--transition); position: relative; overflow: hidden; }
 .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold-dark), var(--gold-light)); transform: scaleX(0); transition: transform var(--transition); }
-.service-card:hover { transform: translateY(-6px); border-color: rgba(200,169,110,.4); box-shadow: var(--shadow); }
+.service-card:hover { transform: translateY(-6px); border-color: rgba(212,134,156,.5); box-shadow: var(--shadow); }
 .service-card:hover::before { transform: scaleX(1); }
 .service-icon { width: 60px; height: 60px; border-radius: 50%; background: rgba(200,169,110,.1); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--gold); margin-bottom: 20px; transition: all var(--transition); }
 .service-card:hover .service-icon { background: var(--gold); color: var(--dark); }
@@ -141,7 +138,7 @@ a:hover { color: var(--gold-light); }
 /* ── BORBÉLYOK ── */
 .staff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
 .staff-card { background: var(--dark-3); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: all var(--transition); }
-.staff-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(200,169,110,.3); }
+.staff-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(212,134,156,.45); }
 .staff-photo { position: relative; height: 320px; overflow: hidden; }
 .staff-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
 .staff-card:hover .staff-photo img { transform: scale(1.05); }
@@ -157,15 +154,13 @@ a:hover { color: var(--gold-light); }
 /* ── MIÉRT MI ── */
 .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px; }
 .feature-item { text-align: center; padding: 32px 24px; }
-.feature-icon { width: 72px; height: 72px; border-radius: 50%; background: rgba(200,169,110,.1); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--gold); margin: 0 auto 20px; }
+.feature-icon { width: 72px; height: 72px; border-radius: 50%; background: rgba(212,134,156,.12); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--gold); margin: 0 auto 20px; }
 .feature-item h3 { font-family: var(--font-serif); font-size: 18px; color: var(--white); margin-bottom: 10px; }
 .feature-item p { color: var(--text-muted); font-size: 14px; line-height: 1.7; }
 
 /* ── CTA SZEKCIÓ ── */
 .cta-section { position: relative; padding: 100px 0; overflow: hidden; }
-.cta-bg {
-    background: url('/assets/images/cta-bg.jpg') center/cover;
-} center/cover; opacity: .15; }
+.cta-bg { position:absolute; inset:0; background:url('/assets/images/cta-bg.jpg') center/cover; opacity:.18; }
 .cta-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, var(--dark-2), var(--dark-3)); }
 .cta-content { position: relative; z-index: 2; text-align: center; }
 .cta-content h2 { font-family: var(--font-serif); font-size: clamp(32px, 5vw, 52px); color: var(--white); margin-bottom: 16px; }
@@ -175,7 +170,7 @@ a:hover { color: var(--gold-light); }
 /* ── BLOG ── */
 .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
 .blog-card { background: var(--dark-3); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: all var(--transition); }
-.blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(200,169,110,.3); }
+.blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(212,134,156,.4); }
 .blog-thumb { height: 200px; overflow: hidden; position: relative; background: var(--dark-4); }
 .blog-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
 .blog-card:hover .blog-thumb img { transform: scale(1.05); }
@@ -223,7 +218,7 @@ a:hover { color: var(--gold-light); }
 .wizard-steps { display: flex; align-items: center; justify-content: center; margin-bottom: 48px; gap: 0; }
 .wizard-step { display: flex; align-items: center; gap: 12px; }
 .wizard-step-num { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: var(--text-muted); transition: all var(--transition); flex-shrink: 0; }
-.wizard-step.active .wizard-step-num { border-color: var(--gold); color: var(--gold); background: rgba(200,169,110,.1); }
+.wizard-step.active .wizard-step-num { border-color: var(--gold); color: var(--gold); background: rgba(212,134,156,.12); }
 .wizard-step.done .wizard-step-num { border-color: var(--gold); background: var(--gold); color: var(--dark); }
 .wizard-step-label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
 .wizard-step.active .wizard-step-label { color: var(--gold); }
@@ -238,18 +233,18 @@ a:hover { color: var(--gold-light); }
 /* Szolgáltatás választó */
 .service-select-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
 .service-select-card { background: var(--dark-3); border: 2px solid var(--border); border-radius: var(--radius-lg); padding: 20px; cursor: pointer; transition: all var(--transition); }
-.service-select-card:hover { border-color: rgba(200,169,110,.4); }
-.service-select-card.selected { border-color: var(--gold); background: rgba(200,169,110,.08); }
+.service-select-card:hover { border-color: rgba(212,134,156,.5); }
+.service-select-card.selected { border-color: var(--gold); background: rgba(212,134,156,.1); }
 .service-select-card h4 { color: var(--white); font-size: 15px; margin-bottom: 6px; }
 .service-select-card p { color: var(--text-muted); font-size: 12px; margin-bottom: 12px; }
 .service-select-card .price { color: var(--gold); font-family: var(--font-serif); font-size: 20px; font-weight: 700; }
 .service-select-card .duration { color: var(--text-muted); font-size: 12px; }
 
-/* Borbély választó */
+/* Műkörmös választó */
 .staff-select-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
 .staff-select-card { background: var(--dark-3); border: 2px solid var(--border); border-radius: var(--radius-lg); padding: 20px; cursor: pointer; transition: all var(--transition); text-align: center; }
-.staff-select-card:hover { border-color: rgba(200,169,110,.4); }
-.staff-select-card.selected { border-color: var(--gold); background: rgba(200,169,110,.08); }
+.staff-select-card:hover { border-color: rgba(212,134,156,.5); }
+.staff-select-card.selected { border-color: var(--gold); background: rgba(212,134,156,.1); }
 .staff-select-card img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; margin: 0 auto 12px; border: 2px solid var(--border); }
 .staff-select-card .staff-avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--dark-4); display: flex; align-items: center; justify-content: center; font-size: 32px; color: var(--text-muted); margin: 0 auto 12px; border: 2px solid var(--border); }
 .staff-select-card h4 { color: var(--white); font-size: 14px; font-weight: 600; }
@@ -423,7 +418,7 @@ a:hover { color: var(--gold-light); }
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.7;
+    opacity: 0.28;
     z-index: 0;
 }
 
@@ -462,7 +457,7 @@ a:hover { color: var(--gold-light); }
     background-image: url('/assets/images/cta-bg.jpg');
     background-size: cover;
     background-position: center;
-    opacity: .15;
+    opacity: .18;
     z-index: 0;
 }
 

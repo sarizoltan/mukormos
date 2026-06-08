@@ -44,7 +44,7 @@ require_once 'partials/header.php';
         <div class="stat-icon"><i class="fas fa-calendar-day"></i></div>
         <div class="stat-info">
             <span class="stat-number"><?= $stats['bookings_today'] ?></span>
-            <span class="stat-label">Mai foglalás</span>
+            <span class="stat-label">Mai kezelés</span>
         </div>
     </div>
     <div class="stat-card orange">
@@ -65,7 +65,7 @@ require_once 'partials/header.php';
         <div class="stat-icon"><i class="fas fa-user-tie"></i></div>
         <div class="stat-info">
             <span class="stat-number"><?= $stats['staff_active'] ?></span>
-            <span class="stat-label">Aktív borbély</span>
+            <span class="stat-label">Aktív műkörmös</span>
         </div>
     </div>
     <div class="stat-card red">
@@ -98,8 +98,8 @@ require_once 'partials/header.php';
                     <tr>
                         <th>Időpont</th>
                         <th>Ügyfél</th>
-                        <th>Borbély</th>
-                        <th>Szolgáltatás</th>
+                        <th>Műkörmös</th>
+                        <th>Kezelés</th>
                         <th>Státusz</th>
                     </tr>
                 </thead>

@@ -228,8 +228,8 @@ require_once 'partials/header.php';
             <div class="settings-info-box">
                 <i class="fas fa-info-circle"></i>
                 <div>
-                    <strong>Megjegyzés:</strong> Az egyéni borbély munkaidőt a
-                    <a href="staff.php">Borbélyok</a> menüpontban lehet beállítani.
+                    <strong>Megjegyzés:</strong> Az egyéni műkörmös munkaidőt a
+                    <a href="staff.php">Műkörmösök</a> menüpontban lehet beállítani.
                     Az itt megadott értékek csak alapértelmezettként szolgálnak.
                 </div>
             </div>
@@ -243,12 +243,12 @@ require_once 'partials/header.php';
             <div class="form-group">
                 <label><i class="fab fa-facebook" style="color:#1877f2;"></i> Facebook URL</label>
                 <input type="url" name="facebook_url" value="<?= e($s['facebook_url']) ?>"
-                       placeholder="https://facebook.com/barbershop">
+                       placeholder="https://facebook.com/nailsalon">
             </div>
             <div class="form-group">
                 <label><i class="fab fa-instagram" style="color:#e4405f;"></i> Instagram URL</label>
                 <input type="url" name="instagram_url" value="<?= e($s['instagram_url']) ?>"
-                       placeholder="https://instagram.com/barbershop">
+                       placeholder="https://instagram.com/nailsalon">
             </div>
             <div class="form-group">
                 <label><i class="fab fa-google" style="color:#ea4335;"></i> Google Maps Embed kód</label>

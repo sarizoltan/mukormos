@@ -335,7 +335,7 @@ require_once 'partials/header.php';
                             </div>
                             <div class="form-group">
                                 <label>URL *</label>
-                                <input type="text" name="url" placeholder="pl. https://... vagy /barber/kapcsolat" required>
+                                <input type="text" name="url" placeholder="pl. https://... vagy /kapcsolat" required>
                             </div>
                             <div class="form-group">
                                 <label>Megnyitás</label>
