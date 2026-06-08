@@ -20,7 +20,7 @@ $maps_embed   = get_setting('google_maps_embed', '');
                         <?php if ($site_logo): ?>
                             <img src="<?= UPLOAD_URL . e($site_logo) ?>" alt="<?= e($site_name) ?>">
                         <?php else: ?>
-                            <i class="fas fa-cut"></i> <?= e($site_name) ?>
+                            <i class="fas fa-hand-sparkles"></i> <?= e($site_name) ?>
                         <?php endif; ?>
                     </a>
                     <p><?= e(get_setting('site_tagline', '')) ?></p>

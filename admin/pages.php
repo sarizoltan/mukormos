@@ -128,9 +128,9 @@ require_once 'partials/header.php';
     $shortcodes = [
         '[services]'                          => '📋 Összes szolgáltatás',
         '[services limit="3" columns="3"]'    => '📋 3 szolgáltatás',
-        '[services category="Hajvágás"]'      => '📋 Kategória szerint',
-        '[staff]'                             => '💈 Borbélyok',
-        '[staff limit="2"]'                   => '💈 2 borbély',
+        '[services category="Manikűr"]'       => '📋 Kategória szerint',
+        '[staff]'                             => '💅 Műkörmösök',
+        '[staff limit="2"]'                   => '💅 2 műkörmös',
         '[booking_button]'                    => '📅 Foglalás gomb',
         '[opening_hours]'                     => '🕐 Nyitvatartás',
         '[map]'                               => '🗺️ Térkép',

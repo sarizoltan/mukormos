@@ -111,7 +111,7 @@ require_once 'partials/header.php';
                 <th>Kategória</th>
                 <th>Időtartam</th>
                 <th>Ár</th>
-                <th>Borbélyok</th>
+                <th>Műkörmösök</th>
                 <th>Sorrend</th>
                 <th>Státusz</th>
                 <th>Műveletek</th>
@@ -131,7 +131,7 @@ require_once 'partials/header.php';
                 <td><span class="category-tag"><?= e($s['category']) ?></span></td>
                 <td><i class="fas fa-clock" style="color:#999;"></i> <?= $s['duration'] ?> perc</td>
                 <td><strong><?= number_format($s['price'],0,',',' ') ?> Ft</strong></td>
-                <td><?= $s['staff_count'] ?> borbély</td>
+                <td><?= $s['staff_count'] ?> műkörmös</td>
                 <td><?= $s['sort_order'] ?></td>
                 <td>
                     <a href="services.php?toggle=<?= $s['id'] ?>&csrf_token=<?= csrf_token() ?>"
@@ -177,7 +177,7 @@ require_once 'partials/header.php';
             <div class="modal-body">
                 <div class="form-group">
                     <label><i class="fas fa-tag"></i> Szolgáltatás neve *</label>
-                    <input type="text" name="name" id="svcName" required placeholder="pl. Hajvágás">
+                    <input type="text" name="name" id="svcName" required placeholder="pl. Géllakk">
                 </div>
                 <div class="form-group">
                     <label><i class="fas fa-align-left"></i> Leírás</label>
@@ -199,7 +199,7 @@ require_once 'partials/header.php';
                 </div>
                 <div class="form-group">
                     <label><i class="fas fa-folder"></i> Kategória</label>
-                    <input type="text" name="category" id="svcCategory" placeholder="pl. Hajvágás, Szakáll, Prémium"
+                    <input type="text" name="category" id="svcCategory" placeholder="pl. Géllakk, Szakáll, Prémium"
                            list="categoryList">
                     <datalist id="categoryList">
                         <?php foreach ($categories as $cat): ?>

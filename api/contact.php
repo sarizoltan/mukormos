@@ -32,7 +32,7 @@ $pdo->prepare("INSERT INTO contact_messages (name, email, phone, message, status
     ->execute([$name, $email, $phone, $message]);
 
 // ── EMAIL AZ ADMINNAK ──
-$site_name   = get_setting('site_name',  'Barber Shop');
+$site_name   = get_setting('site_name',  'Műkörmös Szalon');
 $admin_email = get_setting('site_email', '');
 
 if ($admin_email) {
@@ -47,7 +47,7 @@ if ($admin_email) {
   .wrap { max-width:520px; margin:30px auto; background:#fff; border-radius:12px;
           overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,.1); }
   .header { background:#1a1a1a; padding:24px 32px; }
-  .header h1 { color:#c8a96e; font-size:20px; margin:0; }
+  .header h1 { color:#D4869C; font-size:20px; margin:0; }
   .body { padding:28px 32px; }
   .detail-row { display:flex; justify-content:space-between; padding:9px 0;
                 border-bottom:1px solid #eee; font-size:14px; }
@@ -57,7 +57,7 @@ if ($admin_email) {
   .message-box { background:#f9f9f9; border-radius:8px; padding:16px;
                  margin-top:16px; font-size:14px; color:#444; line-height:1.7; }
   .cta { text-align:center; margin:24px 0 8px; }
-  .cta a { background:#c8a96e; color:#1a1a1a; padding:12px 28px; border-radius:6px;
+  .cta a { background:#C4A994; color:#1a1a1a; padding:12px 28px; border-radius:6px;
            text-decoration:none; font-weight:700; font-size:14px; display:inline-block; }
   .footer { background:#f9f9f9; border-top:1px solid #eee; padding:14px 32px; text-align:center; }
   .footer p { color:#aaa; font-size:12px; margin:0; }

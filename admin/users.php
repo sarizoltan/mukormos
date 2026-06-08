@@ -102,7 +102,7 @@ $role_labels = [
 
 $role_permissions = [
     'superadmin' => ['Teljes hozzáférés', 'Felhasználók kezelése', 'Beállítások', 'Minden modul'],
-    'admin'      => ['Foglalások', 'Borbélyok', 'Szolgáltatások', 'Blog', 'Oldalak', 'Média', 'Üzenetek'],
+    'admin'      => ['Foglalások', 'Műkörmösök', 'Szolgáltatások', 'Blog', 'Oldalak', 'Média', 'Üzenetek'],
     'editor'     => ['Blog szerkesztés', 'Oldalak szerkesztés', 'Média feltöltés'],
 ];
 
@@ -239,7 +239,7 @@ require_once 'partials/header.php';
                     <div class="form-group">
                         <label><i class="fas fa-envelope"></i> Email *</label>
                         <input type="email" name="email" id="uEmail"
-                               required placeholder="email@barber.hu"
+                               required placeholder="email@nailsalon.hu"
                                autocomplete="off">
                     </div>
                 </div>
@@ -301,7 +301,7 @@ require_once 'partials/header.php';
 <script>
 const roleDescriptions = {
     superadmin: '⚡ Teljes hozzáférés mindenhez, beleértve a felhasználók és beállítások kezelését.',
-    admin:      '🔧 Foglalások, borbélyok, szolgáltatások, blog, oldalak, média és üzenetek kezelése.',
+    admin:      '🔧 Foglalások, műkörmösök, szolgáltatások, blog, oldalak, média és üzenetek kezelése.',
     editor:     '✏️ Csak blog bejegyzések és oldalak szerkesztése, média feltöltés.'
 };
 

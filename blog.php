@@ -3,7 +3,7 @@ require_once 'includes/db.php';
 require_once 'includes/functions.php';
 
 $page_meta_title = 'Blog – ' . get_setting('site_name');
-$page_meta_desc  = 'Olvass barber tippeket, stílus tanácsokat és újdonságokat barber shopunktól.';
+$page_meta_desc  = 'Olvass körömápolási tippeket, trendajánlókat és szalon újdonságokat műkörmös szalonunktól.';
 
 // Lapozás
 $per_page    = 9;

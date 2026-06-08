@@ -41,12 +41,12 @@ if ($date_obj > $max_date) {
     exit;
 }
 
-// ── Borbély létezik-e és aktív-e ──
+// ── Műkörmös létezik-e és aktív-e ──
 $stmt = $pdo->prepare("SELECT id FROM staff WHERE id=? AND active=1");
 $stmt->execute([$staff_id]);
 if (!$stmt->fetch()) {
     http_response_code(404);
-    echo json_encode(['error' => 'A megadott borbély nem található vagy inaktív.']);
+    echo json_encode(['error' => 'A megadott műkörmös nem található vagy inaktív.']);
     exit;
 }
 
@@ -66,7 +66,7 @@ if ($service_id) {
         $duration = (int)$svc['duration'];
     }
 
-    // Borbély nyújtja-e ezt a szolgáltatást?
+    // A szakember nyújtja-e ezt a szolgáltatást?
     $ss = $pdo->prepare("SELECT 1 FROM staff_services WHERE staff_id=? AND service_id=?");
     $ss->execute([$staff_id, $service_id]);
     if (!$ss->fetch()) {

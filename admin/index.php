@@ -62,10 +62,10 @@ require_once 'partials/header.php';
         </div>
     </div>
     <div class="stat-card purple">
-        <div class="stat-icon"><i class="fas fa-user-tie"></i></div>
+        <div class="stat-icon"><i class="fas fa-hand-sparkles"></i></div>
         <div class="stat-info">
             <span class="stat-number"><?= $stats['staff_active'] ?></span>
-            <span class="stat-label">Aktív borbély</span>
+            <span class="stat-label">Aktív műkörmös</span>
         </div>
     </div>
     <div class="stat-card red">
@@ -98,7 +98,7 @@ require_once 'partials/header.php';
                     <tr>
                         <th>Időpont</th>
                         <th>Ügyfél</th>
-                        <th>Borbély</th>
+                        <th>Műkörmös</th>
                         <th>Szolgáltatás</th>
                         <th>Státusz</th>
                     </tr>

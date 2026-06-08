@@ -140,7 +140,7 @@ require_once 'partials/header.php';
                 <div class="form-group">
                     <label>Alcím / Szlogen</label>
                     <input type="text" name="site_tagline" value="<?= e($s['site_tagline']) ?>"
-                           placeholder="pl. Prémium hajvágás és borotválkozás">
+                           placeholder="pl. Luxus manikűr és műköröm szalon">
                 </div>
                 <div class="form-row">
                     <div class="form-group">
@@ -228,8 +228,8 @@ require_once 'partials/header.php';
             <div class="settings-info-box">
                 <i class="fas fa-info-circle"></i>
                 <div>
-                    <strong>Megjegyzés:</strong> Az egyéni borbély munkaidőt a
-                    <a href="staff.php">Borbélyok</a> menüpontban lehet beállítani.
+                    <strong>Megjegyzés:</strong> Az egyéni műkörmös munkaidőt a
+                    <a href="staff.php">Műkörmösök</a> menüpontban lehet beállítani.
                     Az itt megadott értékek csak alapértelmezettként szolgálnak.
                 </div>
             </div>
@@ -243,12 +243,12 @@ require_once 'partials/header.php';
             <div class="form-group">
                 <label><i class="fab fa-facebook" style="color:#1877f2;"></i> Facebook URL</label>
                 <input type="url" name="facebook_url" value="<?= e($s['facebook_url']) ?>"
-                       placeholder="https://facebook.com/barbershop">
+                       placeholder="https://facebook.com/nailsalon">
             </div>
             <div class="form-group">
                 <label><i class="fab fa-instagram" style="color:#e4405f;"></i> Instagram URL</label>
                 <input type="url" name="instagram_url" value="<?= e($s['instagram_url']) ?>"
-                       placeholder="https://instagram.com/barbershop">
+                       placeholder="https://instagram.com/nailsalon">
             </div>
             <div class="form-group">
                 <label><i class="fab fa-google" style="color:#ea4335;"></i> Google Maps Embed kód</label>
@@ -275,7 +275,7 @@ require_once 'partials/header.php';
                 <i class="fas fa-lightbulb"></i>
                 <div>
                     <strong>Schema.org:</strong> Az oldal automatikusan generálja a
-                    <code>HairSalon</code>, <code>Service</code>, <code>BlogPosting</code>
+                    <code>NailSalon</code>, <code>Service</code>, <code>BlogPosting</code>
                     és <code>WebPage</code> strukturált adatokat minden oldalon.
                 </div>
             </div>
