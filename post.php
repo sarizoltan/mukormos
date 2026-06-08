@@ -129,7 +129,7 @@ require_once 'templates/header.php';
                 <!-- Szerző -->
                 <div class="sidebar-card">
                     <div class="sidebar-author">
-                        <div class="author-avatar"><i class="fas fa-user-tie"></i></div>
+                        <div class="author-avatar"><i class="fas fa-hand-sparkles"></i></div>
                         <div>
                             <strong><?= e($post['author_name'] ?? get_setting('site_name')) ?></strong>
                             <span><?= e(get_setting('site_name')) ?></span>
@@ -139,9 +139,9 @@ require_once 'templates/header.php';
 
                 <!-- Foglalás CTA -->
                 <div class="sidebar-card sidebar-booking-cta">
-                    <i class="fas fa-cut"></i>
-                    <h4>Foglalj időpontot!</h4>
-                    <p>Próbáld ki te is prémium szolgáltatásainkat.</p>
+                    <i class="fas fa-hand-sparkles"></i>
+                    <h4>Foglalj szépségidőpontot!</h4>
+                    <p>Próbáld ki te is prémium manikűr és műkörmös szolgáltatásainkat.</p>
                     <a href="<?= BASE_URL ?>/foglalas" class="btn btn-gold" style="width:100%;justify-content:center;margin-top:12px;">
                         <i class="fas fa-calendar-check"></i> Foglalás
                     </a>

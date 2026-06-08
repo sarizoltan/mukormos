@@ -14,7 +14,7 @@ function booking_status_label(string $status): string {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= e($page_title ?? 'Admin') ?> – Barber Admin</title>
+    <title><?= e($page_title ?? 'Admin') ?> – Nail Salon Admin</title>
     <link rel="stylesheet" href="<?= BASE_URL ?>/admin/assets/css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -23,8 +23,8 @@ function booking_status_label(string $status): string {
 <!-- Sidebar -->
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-        <i class="fas fa-cut"></i>
-        <span>Barber <strong>Admin</strong></span>
+        <i class="fas fa-hand-sparkles"></i>
+        <span>Nail <strong>Admin</strong></span>
     </div>
 
     <nav class="sidebar-nav">
@@ -49,7 +49,7 @@ function booking_status_label(string $status): string {
             <li>
                 <a href="<?= BASE_URL ?>/admin/staff.php"
                    class="<?= basename($_SERVER['PHP_SELF']) === 'staff.php' ? 'active' : '' ?>">
-                    <i class="fas fa-user-tie"></i> Borbélyok
+                    <i class="fas fa-hand-sparkles"></i> Műkörmösök
                 </a>
             </li>
             <li>

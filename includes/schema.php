@@ -1,14 +1,14 @@
 <?php
 
 function schema_local_business(): string {
-    $name    = get_setting('site_name',    'Barber Shop');
+    $name    = get_setting('site_name',    'Műkörmös Szalon');
     $address = get_setting('site_address', '');
     $phone   = get_setting('site_phone',   '');
     $email   = get_setting('site_email',   '');
 
     $schema = [
         '@context'   => 'https://schema.org',
-        '@type'      => 'HairSalon',
+        '@type'      => 'NailSalon',
         'name'       => $name,
         'url'        => BASE_URL,
         'telephone'  => $phone,
@@ -90,7 +90,7 @@ function schema_service(array $service): string {
         'name'        => $service['name']        ?? '',
         'description' => $service['description'] ?? '',
         'provider'    => [
-            '@type' => 'HairSalon',
+            '@type' => 'NailSalon',
             'name'  => get_setting('site_name'),
         ],
         'offers' => [

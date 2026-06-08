@@ -161,7 +161,7 @@ function shortcode_staff(array $matches): string {
     $staff = $stmt->fetchAll();
 
     if (!$staff) {
-        return '<p style="color:var(--text-muted);padding:16px 0;">Nincsenek elérhető borbélyok.</p>';
+        return '<p style="color:var(--text-muted);padding:16px 0;">Jelenleg nincs elérhető műkörmös.</p>';
     }
 
     ob_start();
@@ -172,7 +172,7 @@ function shortcode_staff(array $matches): string {
             <?php if ($s['photo']): ?>
                 <img src="<?= UPLOAD_URL . e($s['photo']) ?>" alt="<?= e($s['name']) ?>">
             <?php else: ?>
-                <div class="sc-staff-avatar"><i class="fas fa-user-tie"></i></div>
+                <div class="sc-staff-avatar"><i class="fas fa-hand-sparkles"></i></div>
             <?php endif; ?>
             <h4><?= e($s['name']) ?></h4>
             <?php if ($s['bio']): ?>

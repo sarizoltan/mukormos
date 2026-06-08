@@ -58,7 +58,7 @@ function generate_slug(string $text): string {
 
 // ── FOGLALÁSI AZONOSÍTÓ ──
 function generate_booking_ref(): string {
-    return 'BB-' . date('Ymd') . '-' . strtoupper(substr(uniqid(), -4));
+    return 'NS-' . date('Ymd') . '-' . strtoupper(substr(uniqid(), -4));
 }
 
 // ── SZABAD IDŐPONTOK ──
@@ -145,7 +145,7 @@ function is_active_page(string $slug): string {
 
 // ── Email küldés ──
 function send_mail(string $to, string $subject, string $body): bool {
-    $site_name  = get_setting('site_name',       'Barbershop');
+    $site_name  = get_setting('site_name',       'Műkörmös Szalon');
     $from_email = get_setting('smtp_from_email', 'hello@foglalasi-rendszer.hu');
 
     $headers  = "MIME-Version: 1.0\r\n";

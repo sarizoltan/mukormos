@@ -200,7 +200,7 @@ require_once 'partials/header.php';
             <input type="date" name="date" value="<?= e($filter_date) ?>" style="max-width:160px;">
             <?php endif; ?>
             <select name="staff" style="max-width:180px;">
-                <option value="">Minden borbély</option>
+                <option value="">Minden műkörmös</option>
                 <?php foreach ($all_staff as $s): ?>
                 <option value="<?= $s['id'] ?>" <?= $filter_staff == $s['id'] ? 'selected' : '' ?>>
                     <?= e($s['name']) ?>
@@ -294,7 +294,7 @@ require_once 'partials/header.php';
                 <th>Ref.</th>
                 <th>Dátum / Idő</th>
                 <th>Ügyfél</th>
-                <th>Borbély</th>
+                <th>Műkörmös</th>
                 <th>Szolgáltatás</th>
                 <th>Telefon</th>
                 <th>Státusz</th>
@@ -380,9 +380,9 @@ require_once 'partials/header.php';
             <div class="modal-body">
                 <div class="form-row">
                     <div class="form-group">
-                        <label><i class="fas fa-user-tie"></i> Borbély *</label>
+                        <label><i class="fas fa-hand-sparkles"></i> Műkörmös *</label>
                         <select name="staff_id" id="bStaff" required onchange="loadServiceSlots()">
-                            <option value="">Válassz borbélyt</option>
+                            <option value="">Válassz műkörmöst</option>
                             <?php foreach ($all_staff as $s): ?>
                             <option value="<?= $s['id'] ?>"><?= e($s['name']) ?></option>
                             <?php endforeach; ?>
@@ -410,7 +410,7 @@ require_once 'partials/header.php';
                     <div class="form-group">
                         <label><i class="fas fa-clock"></i> Kezdési idő *</label>
                         <select name="start_time" id="bTime" required>
-                            <option value="">Először válassz borbélyt, napot és szolgáltatást</option>
+                            <option value="">Először válassz műkörmöst, napot és szolgáltatást</option>
                         </select>
                     </div>
                 </div>
@@ -527,7 +527,7 @@ function showBookingDetail(b) {
         <div class="detail-row"><span class="detail-label">Ügyfél</span><span class="detail-value">${b.customer_name}</span></div>
         <div class="detail-row"><span class="detail-label">Email</span><span class="detail-value">${b.customer_email}</span></div>
         <div class="detail-row"><span class="detail-label">Telefon</span><span class="detail-value">${b.customer_phone || '–'}</span></div>
-        <div class="detail-row"><span class="detail-label">Borbély</span><span class="detail-value">${b.staff_name}</span></div>
+        <div class="detail-row"><span class="detail-label">Műkörmös</span><span class="detail-value">${b.staff_name}</span></div>
         <div class="detail-row"><span class="detail-label">Szolgáltatás</span><span class="detail-value">${b.service_name}</span></div>
         <div class="detail-row"><span class="detail-label">Dátum</span><span class="detail-value">${b.booking_date}</span></div>
         <div class="detail-row"><span class="detail-label">Időpont</span><span class="detail-value">${b.start_time.slice(0,5)} – ${b.end_time.slice(0,5)}</span></div>
@@ -575,7 +575,7 @@ function loadServiceSlots() {
 
 function booking_status_email(array $booking, string $new_status): void
 {
-    $site_name  = get_setting('site_name',   'Barber Shop');
+    $site_name  = get_setting('site_name',   'Műkörmös Szalon');
     $site_email = get_setting('site_email',  '');
     $site_phone = get_setting('site_phone',  '');
     $site_addr  = get_setting('site_address','');
@@ -596,8 +596,8 @@ function booking_status_email(array $booking, string $new_status): void
             'intro'   => "Kedves <strong>{$booking['customer_name']}</strong>!<br><br>
                           Örömmel értesítünk, hogy foglalásod <strong>megerősítettük</strong>.",
             'extra'   => "<div class='info-box'>
-                            ✂️ Kérjük érkezz <strong>5 perccel korábban</strong>.<br>
-                            Ha nem tudsz megjelenni, értesíts legalább <strong>24 órával</strong> előtte!
+                            💅 Kérjük érkezz <strong>5 perccel korábban</strong>.<br>
+                            Ha nem tudsz megjelenni, értesíts legalább <strong>24 órával</strong> korábban.
                           </div>",
         ],
         'cancelled' => [
@@ -619,7 +619,7 @@ function booking_status_email(array $booking, string $new_status): void
         'completed' => [
             'subject' => "⭐ Köszönjük a látogatást! – {$booking['booking_ref']}",
             'title'   => '⭐ Köszönjük a látogatást!',
-            'color'   => '#c8a96e',
+            'color'   => '#D4869C',
             'icon'    => '⭐',
             'intro'   => "Kedves <strong>{$booking['customer_name']}</strong>!<br><br>
                           Köszönjük, hogy meglátogattál minket!
@@ -642,19 +642,19 @@ function booking_status_email(array $booking, string $new_status): void
   .hdr h1{color:{$cfg['color']};font-size:22px;margin:0;}
   .hdr p{color:#999;font-size:13px;margin:6px 0 0;}
   .bdy{padding:28px 32px;}
-  .ref-box{background:#f9f5ef;border:2px solid #c8a96e;border-radius:8px;padding:14px 20px;text-align:center;margin:16px 0;}
+  .ref-box{background:#f8f1ed;border:2px solid #C4A994;border-radius:8px;padding:14px 20px;text-align:center;margin:16px 0;}
   .ref-box .lbl{font-size:11px;color:#999;text-transform:uppercase;letter-spacing:1px;}
   .ref-box .ref{font-size:22px;font-weight:700;color:#1a1a1a;letter-spacing:2px;font-family:monospace;}
   .details{background:#f9f9f9;border-radius:8px;padding:18px 20px;margin:16px 0;}
   .dr{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #eee;font-size:14px;}
   .dr:last-child{border-bottom:none;}
   .dl{color:#888;}.dv{font-weight:600;color:#333;}
-  .info-box{background:#fffbf0;border-left:4px solid #c8a96e;padding:14px 18px;border-radius:0 8px 8px 0;font-size:13px;color:#666;margin:16px 0;line-height:1.7;}
+  .info-box{background:#faf3f0;border-left:4px solid #D4869C;padding:14px 18px;border-radius:0 8px 8px 0;font-size:13px;color:#666;margin:16px 0;line-height:1.7;}
   .cta{text-align:center;margin:20px 0;}
-  .cta a{background:#c8a96e;color:#1a1a1a;padding:12px 28px;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;display:inline-block;}
+  .cta a{background:#C4A994;color:#1a1a1a;padding:12px 28px;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;display:inline-block;}
   .ftr{background:#1a1a1a;padding:18px 32px;text-align:center;}
   .ftr p{color:#666;font-size:12px;margin:4px 0;}
-  .ftr a{color:#c8a96e;text-decoration:none;}
+  .ftr a{color:#D4869C;text-decoration:none;}
 </style>
 </head><body>
 <div class='wrap'>
@@ -671,7 +671,7 @@ function booking_status_email(array $booking, string $new_status): void
     </div>
     <div class='details'>
       <div class='dr'><span class='dl'>Szolgáltatás</span><span class='dv'>{$booking['service_name']}</span></div>
-      <div class='dr'><span class='dl'>Borbély</span><span class='dv'>{$booking['staff_name']}</span></div>
+      <div class='dr'><span class='dl'>Műkörmös</span><span class='dv'>{$booking['staff_name']}</span></div>
       <div class='dr'><span class='dl'>Dátum</span><span class='dv'>{$date_hu}</span></div>
       <div class='dr'><span class='dl'>Időpont</span><span class='dv'>" . substr($booking['start_time'],0,5) . " – " . substr($booking['end_time'],0,5) . "</span></div>
       <div class='dr'><span class='dl'>Időtartam</span><span class='dv'>{$booking['service_duration']} perc</span></div>

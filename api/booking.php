@@ -26,7 +26,7 @@ $notes      = trim($input['notes']          ?? '');
 
 // ── Validálás ──
 $errors = [];
-if (!$staff_id)   $errors[] = 'Borbély kiválasztása kötelező.';
+if (!$staff_id)   $errors[] = 'Műkörmös kiválasztása kötelező.';
 if (!$service_id) $errors[] = 'Szolgáltatás kiválasztása kötelező.';
 if (!$date)       $errors[] = 'Dátum megadása kötelező.';
 if (!$start_time) $errors[] = 'Időpont megadása kötelező.';
@@ -49,12 +49,12 @@ if ($date_obj < new DateTime('today')) {
     exit;
 }
 
-// ── Borbély ellenőrzés ──
+// ── Műkörmös ellenőrzés ──
 $stmt = $pdo->prepare("SELECT * FROM staff WHERE id=? AND active=1");
 $stmt->execute([$staff_id]);
 $staff = $stmt->fetch();
 if (!$staff) {
-    echo json_encode(['success' => false, 'errors' => ['Érvénytelen borbély.']]);
+    echo json_encode(['success' => false, 'errors' => ['Érvénytelen műkörmös.']]);
     exit;
 }
 
@@ -72,7 +72,7 @@ try {
     $ss = $pdo->prepare("SELECT 1 FROM staff_services WHERE staff_id=? AND service_id=?");
     $ss->execute([$staff_id, $service_id]);
     if (!$ss->fetch()) {
-        echo json_encode(['success' => false, 'errors' => ['Ez a borbély nem nyújtja ezt a szolgáltatást.']]);
+        echo json_encode(['success' => false, 'errors' => ['Ez a műkörmös nem végzi ezt a szolgáltatást.']]);
         exit;
     }
 } catch (PDOException $e) {
@@ -144,55 +144,55 @@ function send_booking_confirmation(
     string $ref, array $service, array $staff,
     string $date, string $start, string $end
 ): void {
-    $site_name  = get_setting('site_name',   'Barber Shop');
+    $site_name  = get_setting('site_name',   'Műkörmös Szalon');
     $site_phone = get_setting('site_phone',  '');
     $site_email = get_setting('site_email',  '');
     $site_addr  = get_setting('site_address','');
     $date_hu    = date('Y. m. d.', strtotime($date));
     $price_fmt  = number_format((float)$service['price'], 0, ',', ' ') . ' Ft';
-    $subject    = "✂️ Foglalás visszaigazolása – {$ref}";
+    $subject    = "💅 Foglalás visszaigazolása – {$ref}";
 
     $body = "<!DOCTYPE html><html lang='hu'><head><meta charset='UTF-8'>
 <style>
   body{font-family:Arial,sans-serif;background:#f5f5f5;margin:0;padding:0;}
   .wrap{max-width:580px;margin:30px auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.1);}
   .hdr{background:#1a1a1a;padding:32px;text-align:center;}
-  .hdr h1{color:#c8a96e;font-size:22px;margin:0;letter-spacing:1px;}
+  .hdr h1{color:#D4869C;font-size:22px;margin:0;letter-spacing:1px;}
   .hdr p{color:#999;font-size:13px;margin:6px 0 0;}
   .bdy{padding:32px;}
-  .ref-box{background:#f9f5ef;border:2px solid #c8a96e;border-radius:8px;padding:16px 24px;text-align:center;margin:20px 0;}
+  .ref-box{background:#f8f1ed;border:2px solid #C4A994;border-radius:8px;padding:16px 24px;text-align:center;margin:20px 0;}
   .ref-box .lbl{font-size:12px;color:#999;text-transform:uppercase;letter-spacing:1px;}
   .ref-box .ref{font-size:24px;font-weight:700;color:#1a1a1a;letter-spacing:2px;font-family:monospace;}
   .details{background:#f9f9f9;border-radius:8px;padding:20px;margin:20px 0;}
   .dr{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;font-size:14px;}
   .dr:last-child{border-bottom:none;}
   .dl{color:#888;} .dv{font-weight:600;color:#333;}
-  .info{background:#fffbf0;border-left:4px solid #c8a96e;padding:14px 18px;border-radius:0 8px 8px 0;font-size:13px;color:#666;margin:20px 0;}
+  .info{background:#faf3f0;border-left:4px solid #D4869C;padding:14px 18px;border-radius:0 8px 8px 0;font-size:13px;color:#666;margin:20px 0;}
   .cta{text-align:center;margin:28px 0;}
-  .cta a{background:#c8a96e;color:#1a1a1a;padding:14px 32px;border-radius:6px;text-decoration:none;font-weight:700;font-size:15px;display:inline-block;}
+  .cta a{background:#C4A994;color:#1a1a1a;padding:14px 32px;border-radius:6px;text-decoration:none;font-weight:700;font-size:15px;display:inline-block;}
   .ftr{background:#1a1a1a;padding:20px 32px;text-align:center;}
   .ftr p{color:#666;font-size:12px;margin:4px 0;}
-  .ftr a{color:#c8a96e;text-decoration:none;}
+  .ftr a{color:#D4869C;text-decoration:none;}
 </style>
 </head><body>
 <div class='wrap'>
-  <div class='hdr'><h1>✂️ {$site_name}</h1><p>Foglalás visszaigazolása</p></div>
+  <div class='hdr'><h1>💅 {$site_name}</h1><p>Foglalás visszaigazolása</p></div>
   <div class='bdy'>
     <p>Kedves <strong>{$to_name}</strong>!</p>
-    <p>Köszönjük a foglalásod! Az alábbiakban találod a részleteket:</p>
+    <p>Köszönjük a foglalásod! Az alábbiakban találod a prémium szalonkezelés részleteit:</p>
     <div class='ref-box'>
       <div class='lbl'>Foglalási azonosító</div>
       <div class='ref'>{$ref}</div>
     </div>
     <div class='details'>
       <div class='dr'><span class='dl'>Szolgáltatás</span><span class='dv'>{$service['name']}</span></div>
-      <div class='dr'><span class='dl'>Borbély</span><span class='dv'>{$staff['name']}</span></div>
+      <div class='dr'><span class='dl'>Műkörmös</span><span class='dv'>{$staff['name']}</span></div>
       <div class='dr'><span class='dl'>Dátum</span><span class='dv'>{$date_hu}</span></div>
       <div class='dr'><span class='dl'>Időpont</span><span class='dv'>{$start} – {$end}</span></div>
       <div class='dr'><span class='dl'>Időtartam</span><span class='dv'>{$service['duration']} perc</span></div>
       <div class='dr'><span class='dl'>Ár</span><span class='dv'>{$price_fmt}</span></div>
     </div>
-    <div class='info'>ℹ️ Ha módosítani vagy lemondani szeretnéd a foglalásod, kérjük vedd fel velünk a kapcsolatot legalább <strong>24 órával</strong> előtte.</div>
+    <div class='info'>ℹ️ Ha módosítani vagy lemondani szeretnéd az időpontodat, kérjük jelezd legalább <strong>24 órával</strong> korábban.</div>
     <div class='cta'><a href='" . BASE_URL . "/foglalas'>Új időpontfoglalás</a></div>
   </div>
   <div class='ftr'>
@@ -212,7 +212,7 @@ function send_admin_notification(
     array $service, array $staff,
     string $date, string $start, string $end, string $notes
 ): void {
-    $site_name   = get_setting('site_name',  'Barber Shop');
+    $site_name   = get_setting('site_name',  'Műkörmös Szalon');
     $admin_email = get_setting('site_email', '');
     if (!$admin_email) return;
 
@@ -224,26 +224,26 @@ function send_admin_notification(
   body{font-family:Arial,sans-serif;background:#f5f5f5;margin:0;padding:0;}
   .wrap{max-width:560px;margin:30px auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.1);}
   .hdr{background:#1a1a1a;padding:24px 32px;}
-  .hdr h1{color:#c8a96e;font-size:20px;margin:0;}
+  .hdr h1{color:#D4869C;font-size:20px;margin:0;}
   .hdr p{color:#999;font-size:13px;margin:4px 0 0;}
   .bdy{padding:28px 32px;}
   .dr{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #eee;font-size:14px;}
   .dr:last-child{border-bottom:none;}
   .dl{color:#888;} .dv{font-weight:600;color:#333;}
   .cta{text-align:center;margin:24px 0 8px;}
-  .cta a{background:#c8a96e;color:#1a1a1a;padding:12px 28px;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;display:inline-block;}
+  .cta a{background:#C4A994;color:#1a1a1a;padding:12px 28px;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;display:inline-block;}
   .ftr{background:#f9f9f9;border-top:1px solid #eee;padding:14px 32px;text-align:center;}
   .ftr p{color:#aaa;font-size:12px;margin:0;}
 </style>
 </head><body>
 <div class='wrap'>
-  <div class='hdr'><h1>🔔 Új foglalás érkezett</h1><p>{$site_name} – Admin értesítő</p></div>
+  <div class='hdr'><h1>🔔 Új foglalás érkezett</h1><p>{$site_name} – Szalon értesítő</p></div>
   <div class='bdy'>
     <div class='dr'><span class='dl'>Referencia</span><span class='dv'>{$ref}</span></div>
     <div class='dr'><span class='dl'>Ügyfél neve</span><span class='dv'>{$cust_name}</span></div>
     <div class='dr'><span class='dl'>Email</span><span class='dv'>{$cust_email}</span></div>
     <div class='dr'><span class='dl'>Telefon</span><span class='dv'>" . ($cust_phone ?: '–') . "</span></div>
-    <div class='dr'><span class='dl'>Borbély</span><span class='dv'>{$staff['name']}</span></div>
+    <div class='dr'><span class='dl'>Műkörmös</span><span class='dv'>{$staff['name']}</span></div>
     <div class='dr'><span class='dl'>Szolgáltatás</span><span class='dv'>{$service['name']}</span></div>
     <div class='dr'><span class='dl'>Dátum</span><span class='dv'>{$date_hu}</span></div>
     <div class='dr'><span class='dl'>Időpont</span><span class='dv'>{$start} – {$end}</span></div>

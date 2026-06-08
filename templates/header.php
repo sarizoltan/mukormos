@@ -4,7 +4,7 @@ require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../includes/schema.php';
 
 // Beállítások
-$site_name    = get_setting('site_name', 'Barber Shop');
+$site_name    = get_setting('site_name', 'Műkörmös Szalon');
 $site_phone   = get_setting('site_phone', '');
 $site_email   = get_setting('site_email', '');
 $site_address = get_setting('site_address', '');
@@ -89,7 +89,7 @@ $page_schema     = $page_schema     ?? '';
                 <?php if ($site_logo): ?>
                     <img src="<?= UPLOAD_URL . e($site_logo) ?>" alt="<?= e($site_name) ?>">
                 <?php else: ?>
-                    <span class="logo-icon"><i class="fas fa-cut"></i></span>
+                    <span class="logo-icon"><i class="fas fa-hand-sparkles"></i></span>
                     <span class="logo-text"><?= e($site_name) ?></span>
                 <?php endif; ?>
             </a>

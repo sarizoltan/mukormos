@@ -49,7 +49,7 @@ $tabs = [
     'hero'     => ['icon' => 'fas fa-home',          'label' => 'Hero szekció'],
     'services' => ['icon' => 'fas fa-concierge-bell', 'label' => 'Szolgáltatások'],
     'features' => ['icon' => 'fas fa-star',           'label' => 'Miért mi?'],
-    'barbers'  => ['icon' => 'fas fa-user-tie',       'label' => 'Borbélyok'],
+    'barbers'  => ['icon' => 'fas fa-hand-sparkles',       'label' => 'Műkörmösök'],
     'cta'      => ['icon' => 'fas fa-bullhorn',       'label' => 'CTA szekció'],
     'blog'     => ['icon' => 'fas fa-blog',           'label' => 'Blog szekció'],
     'contact'  => ['icon' => 'fas fa-envelope',       'label' => 'Kapcsolat'],
@@ -101,7 +101,7 @@ require_once 'partials/header.php';
                 <div class="form-group">
                     <label>Felső kis felirat</label>
                     <input type="text" name="hero_label" value="<?= e(hs('hero_label')) ?>"
-                           placeholder="pl. Prémium Barber Shop">
+                           placeholder="pl. Prémium Műkörmös Szalon">
                     <small style="color:var(--text-muted);">A cím felett megjelenő kis szöveg (nagybetűs)</small>
                 </div>
                 <div class="form-group">
@@ -113,7 +113,7 @@ require_once 'partials/header.php';
                 <div class="form-group">
                     <label>Főcím – 2. sor <span style="color:var(--accent);">(arany szín)</span></label>
                     <input type="text" name="hero_title_line2" value="<?= e(hs('hero_title_line2')) ?>"
-                           placeholder="pl. a te kezedben van.">
+                           placeholder="pl. a kezeid dísze.">
                     <small style="color:var(--text-muted);">Arany/kiemelő színű sor</small>
                 </div>
                 <div class="form-group">
@@ -162,8 +162,8 @@ require_once 'partials/header.php';
                         <input type="text" name="hero_stat1_label" value="<?= e(hs('hero_stat1_label')) ?>" placeholder="Év tapasztalat">
                     </div>
                     <div class="form-group">
-                        <label style="color:var(--text-muted);font-size:12px;">2. szám (auto: borbélyok száma)</label>
-                        <input type="text" name="hero_stat2_label" value="<?= e(hs('hero_stat2_label')) ?>" placeholder="Mesterborbély">
+                        <label style="color:var(--text-muted);font-size:12px;">2. szám (auto: műkörmösök száma)</label>
+                        <input type="text" name="hero_stat2_label" value="<?= e(hs('hero_stat2_label')) ?>" placeholder="Nail artist">
                     </div>
                 </div>
                 <div class="form-row">
@@ -367,7 +367,7 @@ require_once 'partials/header.php';
     <div class="hp-editor-layout">
         <div class="hp-editor-main">
             <div class="card">
-                <div class="card-header"><h3><i class="fas fa-user-tie"></i> Borbélyok szekció</h3></div>
+                <div class="card-header"><h3><i class="fas fa-hand-sparkles"></i> Műkörmösök szekció</h3></div>
                 <div class="form-group">
                     <label class="checkbox-label">
                         <input type="checkbox" name="barbers_show" value="1"
@@ -381,7 +381,7 @@ require_once 'partials/header.php';
                         <input type="text" name="barbers_label" value="<?= e(hs('barbers_label')) ?>">
                     </div>
                     <div class="form-group">
-                        <label>Megjelenítendő borbélyok</label>
+                        <label>Megjelenítendő műkörmösök</label>
                         <select name="barbers_limit">
                             <?php foreach ([2,3,4,6,8] as $n): ?>
                             <option value="<?= $n ?>" <?= hs('barbers_limit','4') == $n ? 'selected':'' ?>><?= $n ?> fő</option>
@@ -401,7 +401,7 @@ require_once 'partials/header.php';
 
             <div class="card">
                 <div class="card-header">
-                    <h3><i class="fas fa-users"></i> Aktív borbélyok</h3>
+                    <h3><i class="fas fa-users"></i> Aktív műkörmösök</h3>
                     <a href="staff.php" class="btn-sm"><i class="fas fa-edit"></i> Szerkesztés</a>
                 </div>
                 <?php $all_staff = $pdo->query("SELECT * FROM staff WHERE active=1 ORDER BY sort_order LIMIT 10")->fetchAll(); ?>
@@ -422,7 +422,7 @@ require_once 'partials/header.php';
                     <?php endforeach; ?>
                 </div>
                 <p style="font-size:12px;color:var(--text-muted);margin-top:12px;">
-                    <i class="fas fa-info-circle"></i> A borbélyokat a <a href="staff.php">Borbélyok</a> menüpontban kezelheted.
+                    <i class="fas fa-info-circle"></i> A műkörmösökat a <a href="staff.php">Műkörmösök</a> menüpontban kezelheted.
                 </p>
             </div>
         </div>
