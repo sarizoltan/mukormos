@@ -3,12 +3,12 @@ require_once 'includes/db.php';
 require_once 'includes/functions.php';
 
 $page_meta_title = 'Időpontfoglalás – ' . get_setting('site_name');
-$page_meta_desc  = 'Foglalj időpontot online barber shop-unkba. Válaszd ki a szolgáltatást, a borbélyt és az időpontot.';
+$page_meta_desc  = 'Foglalj időpontot online műkörmös szalonunkba. Válaszd ki a kezelést, a műkörmöst és az időpontot.';
 
-// Előre kiválasztott borbély (főoldalról jöhet)
+// Előre kiválasztott műkörmös (főoldalról jöhet)
 $preselect_staff = (int)($_GET['staff'] ?? 0);
 
-// Aktív szolgáltatások és borbélyok
+// Aktív kezelések és műkörmösök
 $services = $pdo->query("SELECT * FROM services WHERE active=1 ORDER BY sort_order ASC")->fetchAll();
 $staff    = $pdo->query("SELECT * FROM staff WHERE active=1 ORDER BY sort_order ASC")->fetchAll();
 
@@ -43,7 +43,7 @@ require_once 'templates/header.php';
             <div class="wizard-steps">
                 <div class="wizard-step active" id="step-indicator-1">
                     <div class="wizard-step-num">1</div>
-                    <div class="wizard-step-label">Szolgáltatás & Borbély</div>
+                    <div class="wizard-step-label">Kezelés & Műkörmös</div>
                 </div>
                 <div class="wizard-connector" id="connector-1"></div>
                 <div class="wizard-step" id="step-indicator-2">
@@ -53,17 +53,17 @@ require_once 'templates/header.php';
                 <div class="wizard-connector" id="connector-2"></div>
                 <div class="wizard-step" id="step-indicator-3">
                     <div class="wizard-step-num">3</div>
-                    <div class="wizard-step-label">Adatok & Megerősítés</div>
+                    <div class="wizard-step-label">Adatok</div>
                 </div>
             </div>
 
-            <!-- ── 1. LÉPÉS: Szolgáltatás + Borbély ── -->
+            <!-- ── 1. LÉPÉS: Szolgáltatás + Műkörmös ── -->
             <div class="wizard-panel active" id="panel-1">
 
                 <!-- Szolgáltatás választó -->
                 <h3 class="wizard-panel-title">
                     <span class="step-num-badge">1</span>
-                    Válassz szolgáltatást
+                    Válassz kezelést
                 </h3>
 
                 <?php foreach ($services_by_cat as $cat => $cat_services): ?>
@@ -91,10 +91,10 @@ require_once 'templates/header.php';
                 </div>
                 <?php endforeach; ?>
 
-                <!-- Borbély választó -->
+                <!-- Műkörmös választó -->
                 <h3 class="wizard-panel-title" style="margin-top:36px;">
                     <span class="step-num-badge">2</span>
-                    Válassz borbélyt
+                    Válassz műkörmöst
                 </h3>
                 <div class="staff-select-grid">
                     <?php foreach ($staff as $s): ?>
@@ -237,11 +237,11 @@ require_once 'templates/header.php';
                         <div class="booking-summary" id="bookingSummary">
                             <h3><i class="fas fa-receipt" style="color:var(--gold);margin-right:8px;"></i>Foglalás összegzése</h3>
                             <div class="summary-row">
-                                <span class="summary-label">Szolgáltatás</span>
+                                <span class="summary-label">Kezelés</span>
                                 <span class="summary-value" id="sumService">–</span>
                             </div>
                             <div class="summary-row">
-                                <span class="summary-label">Borbély</span>
+                                <span class="summary-label">Műkörmös</span>
                                 <span class="summary-value" id="sumStaff">–</span>
                             </div>
                             <div class="summary-row">
@@ -285,7 +285,7 @@ require_once 'templates/header.php';
                     <div class="booking-success-icon">
                         <i class="fas fa-check"></i>
                     </div>
-                    <h2>Foglalás rögzítve!</h2>
+                    <h2>Kezelés foglalva!</h2>
                     <p>Köszönjük! Foglalásod sikeresen rögzítettük.</p>
                     <p>Hamarosan visszaigazoló emailt küldünk.</p>
                     <div class="booking-ref-box">
@@ -344,7 +344,7 @@ const booking = {
     endTime:   ''
 };
 
-// ── Előre kiválasztott borbély ──
+// ── Előre kiválasztott műkörmös ──
 <?php if ($preselect_staff): ?>
 document.addEventListener('DOMContentLoaded', () => {
     const el = document.getElementById('preselect-staff');
@@ -364,7 +364,7 @@ function selectService(el) {
     updateStaffAvailability();
 }
 
-// ── Borbély kiválasztása ──
+// ── Műkörmös kiválasztása ──
 function selectStaff(el) {
     document.querySelectorAll('.staff-select-card').forEach(c => c.classList.remove('selected'));
     el.classList.add('selected');
@@ -378,7 +378,7 @@ function checkStep1() {
     document.getElementById('toStep2Btn').disabled = !(booking.serviceId && booking.staffId);
 }
 
-// ── Borbélyok szűrése szolgáltatás szerint ──
+// ── Műkörmösök szűrése kezelés szerint ──
 function updateStaffAvailability() {
     if (!booking.serviceId) return;
     fetch(`<?= BASE_URL ?>/api/slots.php?check_staff=1&service_id=${booking.serviceId}`)
@@ -514,8 +514,8 @@ async function submitBooking() {
             // Siker képernyő
             document.getElementById('successRef').textContent = json.booking_ref;
             document.getElementById('successDetails').innerHTML = `
-                <div class="summary-row"><span class="summary-label">Szolgáltatás</span><span class="summary-value">${booking.serviceName}</span></div>
-                <div class="summary-row"><span class="summary-label">Borbély</span><span class="summary-value">${booking.staffName}</span></div>
+                <div class="summary-row"><span class="summary-label">Kezelés</span><span class="summary-value">${booking.serviceName}</span></div>
+                <div class="summary-row"><span class="summary-label">Műkörmös</span><span class="summary-value">${booking.staffName}</span></div>
                 <div class="summary-row"><span class="summary-label">Dátum</span><span class="summary-value">${booking.date}</span></div>
                 <div class="summary-row"><span class="summary-label">Időpont</span><span class="summary-value">${json.start_time} – ${json.end_time}</span></div>
             `;

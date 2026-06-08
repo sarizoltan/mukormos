@@ -26,8 +26,8 @@ $notes      = trim($input['notes']          ?? '');
 
 // ── Validálás ──
 $errors = [];
-if (!$staff_id)   $errors[] = 'Borbély kiválasztása kötelező.';
-if (!$service_id) $errors[] = 'Szolgáltatás kiválasztása kötelező.';
+if (!$staff_id)   $errors[] = 'Műkörmös kiválasztása kötelező.';
+if (!$service_id) $errors[] = 'Kezelés kiválasztása kötelező.';
 if (!$date)       $errors[] = 'Dátum megadása kötelező.';
 if (!$start_time) $errors[] = 'Időpont megadása kötelező.';
 if (!$cust_name)  $errors[] = 'Név megadása kötelező.';
@@ -49,12 +49,12 @@ if ($date_obj < new DateTime('today')) {
     exit;
 }
 
-// ── Borbély ellenőrzés ──
+// ── Műkörmös ellenőrzés ──
 $stmt = $pdo->prepare("SELECT * FROM staff WHERE id=? AND active=1");
 $stmt->execute([$staff_id]);
 $staff = $stmt->fetch();
 if (!$staff) {
-    echo json_encode(['success' => false, 'errors' => ['Érvénytelen borbély.']]);
+    echo json_encode(['success' => false, 'errors' => ['Érvénytelen műkörmös.']]);
     exit;
 }
 
@@ -72,7 +72,7 @@ try {
     $ss = $pdo->prepare("SELECT 1 FROM staff_services WHERE staff_id=? AND service_id=?");
     $ss->execute([$staff_id, $service_id]);
     if (!$ss->fetch()) {
-        echo json_encode(['success' => false, 'errors' => ['Ez a borbély nem nyújtja ezt a szolgáltatást.']]);
+        echo json_encode(['success' => false, 'errors' => ['Ez a műkörmös nem nyújtja ezt a szolgáltatást.']]);
         exit;
     }
 } catch (PDOException $e) {
@@ -129,7 +129,7 @@ send_admin_notification($ref, $cust_name, $cust_email, $cust_phone, $service, $s
 echo json_encode([
     'success'      => true,
     'booking_ref'  => $ref,
-    'message'      => 'Foglalás sikeresen rögzítve!',
+    'message'      => 'Kezelés foglalva!',
     'booking_date' => $date,
     'start_time'   => $start_time,
     'end_time'     => $end_time,
@@ -144,13 +144,13 @@ function send_booking_confirmation(
     string $ref, array $service, array $staff,
     string $date, string $start, string $end
 ): void {
-    $site_name  = get_setting('site_name',   'Barber Shop');
+    $site_name  = get_setting('site_name',   'Műkörmös Szalon');
     $site_phone = get_setting('site_phone',  '');
     $site_email = get_setting('site_email',  '');
     $site_addr  = get_setting('site_address','');
     $date_hu    = date('Y. m. d.', strtotime($date));
     $price_fmt  = number_format((float)$service['price'], 0, ',', ' ') . ' Ft';
-    $subject    = "✂️ Foglalás visszaigazolása – {$ref}";
+    $subject    = "💅 Kezelés visszaigazolása – {$ref}";
 
     $body = "<!DOCTYPE html><html lang='hu'><head><meta charset='UTF-8'>
 <style>
@@ -176,24 +176,24 @@ function send_booking_confirmation(
 </style>
 </head><body>
 <div class='wrap'>
-  <div class='hdr'><h1>✂️ {$site_name}</h1><p>Foglalás visszaigazolása</p></div>
+  <div class='hdr'><h1>💅 {$site_name}</h1><p>Kezelés visszaigazolása</p></div>
   <div class='bdy'>
     <p>Kedves <strong>{$to_name}</strong>!</p>
-    <p>Köszönjük a foglalásod! Az alábbiakban találod a részleteket:</p>
+    <p>Köszönjük a foglalásod! Az alábbiakban találod a kezelés részleteit:</p>
     <div class='ref-box'>
       <div class='lbl'>Foglalási azonosító</div>
       <div class='ref'>{$ref}</div>
     </div>
     <div class='details'>
-      <div class='dr'><span class='dl'>Szolgáltatás</span><span class='dv'>{$service['name']}</span></div>
-      <div class='dr'><span class='dl'>Borbély</span><span class='dv'>{$staff['name']}</span></div>
+      <div class='dr'><span class='dl'>Kezelés</span><span class='dv'>{$service['name']}</span></div>
+      <div class='dr'><span class='dl'>Műkörmös</span><span class='dv'>{$staff['name']}</span></div>
       <div class='dr'><span class='dl'>Dátum</span><span class='dv'>{$date_hu}</span></div>
       <div class='dr'><span class='dl'>Időpont</span><span class='dv'>{$start} – {$end}</span></div>
       <div class='dr'><span class='dl'>Időtartam</span><span class='dv'>{$service['duration']} perc</span></div>
       <div class='dr'><span class='dl'>Ár</span><span class='dv'>{$price_fmt}</span></div>
     </div>
     <div class='info'>ℹ️ Ha módosítani vagy lemondani szeretnéd a foglalásod, kérjük vedd fel velünk a kapcsolatot legalább <strong>24 órával</strong> előtte.</div>
-    <div class='cta'><a href='" . BASE_URL . "/foglalas'>Új időpontfoglalás</a></div>
+    <div class='cta'><a href='" . BASE_URL . "/foglalas'>Új kezelés foglalása</a></div>
   </div>
   <div class='ftr'>
     " . ($site_addr  ? "<p>📍 {$site_addr}</p>"  : '') . "
@@ -212,12 +212,12 @@ function send_admin_notification(
     array $service, array $staff,
     string $date, string $start, string $end, string $notes
 ): void {
-    $site_name   = get_setting('site_name',  'Barber Shop');
+    $site_name   = get_setting('site_name',  'Műkörmös Szalon');
     $admin_email = get_setting('site_email', '');
     if (!$admin_email) return;
 
     $date_hu = date('Y. m. d.', strtotime($date));
-    $subject = "🔔 Új foglalás érkezett – {$ref}";
+    $subject = "🔔 Új kezelés érkezett – {$ref}";
 
     $body = "<!DOCTYPE html><html lang='hu'><head><meta charset='UTF-8'>
 <style>
@@ -237,14 +237,14 @@ function send_admin_notification(
 </style>
 </head><body>
 <div class='wrap'>
-  <div class='hdr'><h1>🔔 Új foglalás érkezett</h1><p>{$site_name} – Admin értesítő</p></div>
+  <div class='hdr'><h1>🔔 Új kezelés érkezett</h1><p>{$site_name} – Admin értesítő</p></div>
   <div class='bdy'>
     <div class='dr'><span class='dl'>Referencia</span><span class='dv'>{$ref}</span></div>
     <div class='dr'><span class='dl'>Ügyfél neve</span><span class='dv'>{$cust_name}</span></div>
     <div class='dr'><span class='dl'>Email</span><span class='dv'>{$cust_email}</span></div>
     <div class='dr'><span class='dl'>Telefon</span><span class='dv'>" . ($cust_phone ?: '–') . "</span></div>
-    <div class='dr'><span class='dl'>Borbély</span><span class='dv'>{$staff['name']}</span></div>
-    <div class='dr'><span class='dl'>Szolgáltatás</span><span class='dv'>{$service['name']}</span></div>
+    <div class='dr'><span class='dl'>Műkörmös</span><span class='dv'>{$staff['name']}</span></div>
+    <div class='dr'><span class='dl'>Kezelés</span><span class='dv'>{$service['name']}</span></div>
     <div class='dr'><span class='dl'>Dátum</span><span class='dv'>{$date_hu}</span></div>
     <div class='dr'><span class='dl'>Időpont</span><span class='dv'>{$start} – {$end}</span></div>
     " . ($notes ? "<div class='dr'><span class='dl'>Megjegyzés</span><span class='dv'>{$notes}</span></div>" : '') . "

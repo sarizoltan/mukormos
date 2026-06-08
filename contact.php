@@ -11,7 +11,7 @@ $days_hu = ['Hétfő','Kedd','Szerda','Csütörtök','Péntek','Szombat','Vasár
 $today = (date('N') - 1); // PHP N: 1=Hétfő, 7=Vasárnap → 0-6
 
 // Beállítások
-$site_name    = get_setting('site_name', 'Barber Shop');
+$site_name    = get_setting('site_name', 'Műkörmös Szalon');
 $site_address = get_setting('site_address', '');
 $site_phone   = get_setting('site_phone', '');
 $site_email   = get_setting('site_email', '');
@@ -22,9 +22,9 @@ $osm_zoom     = get_setting('osm_zoom', '16');
 $osm_height   = get_setting('osm_height', '400');
 $osm_label    = get_setting('osm_marker_label', $site_name);
 $google_embed = get_setting('google_maps_embed', '');
-$contact_title     = get_setting('contact_title', 'Nyitvatartás & Kapcsolat');
-$contact_label     = get_setting('contact_label', 'Elérhetőség');
-$contact_form_title = get_setting('contact_form_title', 'Írj nekünk!');
+$contact_title     = get_setting('contact_title', 'Kapcsolat & Nyitvatartás');
+$contact_label     = get_setting('contact_label', 'Kapcsolat');
+$contact_form_title = get_setting('contact_form_title', 'Kérj időpontot vagy írj nekünk!');
 $contact_success   = get_setting('contact_success_msg', 'Üzeneted megkaptuk! Hamarosan felvesszük veled a kapcsolatot.');
 $hours_extra  = get_setting('hours_extra', '');
 $hours_note   = get_setting('hours_note', '');

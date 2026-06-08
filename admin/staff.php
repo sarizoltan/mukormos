@@ -13,7 +13,7 @@ $edit_staff = null;
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
     if (csrf_verify()) {
         $pdo->prepare("DELETE FROM staff WHERE id = ?")->execute([$_GET['delete']]);
-        $message = 'Borbély törölve!';
+        $message = 'Műkörmös törölve!';
     }
 }
 
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_staff'])) {
                 ? [$name, $bio, $email, $phone, $sort, $active, $photo, $id]
                 : [$name, $bio, $email, $phone, $sort, $active, $id];
             $pdo->prepare($sql)->execute($params);
-            $message = 'Borbély frissítve!';
+            $message = 'Műkörmös frissítve!';
         } else {
             // Új
             $pdo->prepare("INSERT INTO staff (name,bio,email,phone,sort_order,active,photo) VALUES (?,?,?,?,?,?,?)")
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_staff'])) {
             foreach ($default_hours as $h) {
                 $wh_stmt->execute([$id, $h[0], $h[1], $h[2], $h[3]]);
             }
-            $message = 'Borbély létrehozva!';
+            $message = 'Műkörmös létrehozva!';
         }
 
         // Szolgáltatások frissítése
@@ -126,7 +126,7 @@ if (isset($_GET['hours']) && is_numeric($_GET['hours'])) {
 $staff_list = $pdo->query("SELECT * FROM staff ORDER BY sort_order ASC, name ASC")->fetchAll();
 $all_services = $pdo->query("SELECT * FROM services WHERE active=1 ORDER BY sort_order")->fetchAll();
 
-// Borbélyok szolgáltatásai
+// Műkörmösök szolgáltatásai
 $staff_services_map = [];
 $ss_rows = $pdo->query("SELECT * FROM staff_services")->fetchAll();
 foreach ($ss_rows as $row) {
@@ -134,7 +134,7 @@ foreach ($ss_rows as $row) {
 }
 
 $days_hu = ['Hétfő','Kedd','Szerda','Csütörtök','Péntek','Szombat','Vasárnap'];
-$page_title = 'Borbélyok';
+$page_title = 'Műkörmösök';
 require_once 'partials/header.php';
 ?>
 
@@ -206,10 +206,10 @@ require_once 'partials/header.php';
 <?php else: ?>
 <!-- ── LISTA + FORM ── -->
 <div class="page-header">
-    <h2><i class="fas fa-user-tie"></i> Borbélyok kezelése</h2>
+    <h2><i class="fas fa-user-tie"></i> Műkörmösök kezelése</h2>
     <button class="btn btn-primary" data-modal-open="staffModal"
             onclick="openStaffModal()">
-        <i class="fas fa-plus"></i> Új borbély
+        <i class="fas fa-plus"></i> Új műkörmös
     </button>
 </div>
 
@@ -270,7 +270,7 @@ require_once 'partials/header.php';
                         </button>
                         <a href="staff.php?delete=<?= $s['id'] ?>&csrf_token=<?= csrf_token() ?>"
                            class="action-btn delete" title="Törlés"
-                           data-confirm="Biztosan törölni szeretnéd ezt a borbélyt? Minden foglalása is törlődik!">
+                           data-confirm="Biztosan törölni szeretnéd ezt a műkörmöst? Minden foglalása is törlődik!">
                             <i class="fas fa-trash"></i>
                         </a>
                     </div>
@@ -278,18 +278,18 @@ require_once 'partials/header.php';
             </tr>
             <?php endforeach; ?>
             <?php else: ?>
-            <tr><td colspan="8" style="text-align:center;padding:40px;color:#999;">Még nincs borbély felvéve.</td></tr>
+            <tr><td colspan="8" style="text-align:center;padding:40px;color:#999;">Még nincs műkörmös felvéve.</td></tr>
             <?php endif; ?>
         </tbody>
     </table>
 </div>
 <?php endif; ?>
 
-<!-- ── MODAL: Borbély szerkesztő ── -->
+<!-- ── MODAL: Műkörmös szerkesztő ── -->
 <div class="modal-overlay" id="staffModal">
     <div class="modal" style="max-width:700px;">
         <div class="modal-header">
-            <h3 id="modalTitle"><i class="fas fa-user-tie"></i> Borbély hozzáadása</h3>
+            <h3 id="modalTitle"><i class="fas fa-user-tie"></i> Műkörmös hozzáadása</h3>
             <button class="modal-close">&times;</button>
         </div>
         <form method="POST" action="staff.php" enctype="multipart/form-data">
@@ -304,7 +304,7 @@ require_once 'partials/header.php';
                     </div>
                     <div class="form-group">
                         <label><i class="fas fa-envelope"></i> Email</label>
-                        <input type="email" name="email" id="staffEmail" placeholder="peter@barber.hu">
+                        <input type="email" name="email" id="staffEmail" placeholder="anna@nailsalon.hu">
                     </div>
                 </div>
                 <div class="form-row">
@@ -344,7 +344,7 @@ require_once 'partials/header.php';
                 <div class="form-group">
                     <label class="checkbox-label">
                         <input type="checkbox" name="active" id="staffActive" checked>
-                        <strong>Aktív borbély</strong> (látható a foglalási rendszerben)
+                        <strong>Aktív műkörmös</strong> (látható a foglalási rendszerben)
                     </label>
                 </div>
             </div>
@@ -377,7 +377,7 @@ require_once 'partials/header.php';
 <script>
 function openStaffModal(staff = null, services = []) {
     document.getElementById('modalTitle').innerHTML =
-        staff ? '<i class="fas fa-edit"></i> Borbély szerkesztése' : '<i class="fas fa-user-tie"></i> Borbély hozzáadása';
+        staff ? '<i class="fas fa-edit"></i> Műkörmös szerkesztése' : '<i class="fas fa-user-tie"></i> Műkörmös hozzáadása';
     document.getElementById('staffId').value    = staff ? staff.id : 0;
     document.getElementById('staffName').value  = staff ? staff.name : '';
     document.getElementById('staffEmail').value = staff ? staff.email : '';
